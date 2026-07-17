@@ -1,8 +1,8 @@
 import { getStore } from '@netlify/blobs';
 
 function getBookStore() {
-  const siteID = process.env.NETLIFY_BLOBS_SITE_ID;
-  const token = process.env.NETLIFY_BLOBS_TOKEN;
+  const siteID = process.env.BOOK_BLOBS_SITE_ID;
+  const token = process.env.BOOK_BLOBS_TOKEN;
   if (siteID && token) {
     return getStore({ name: 'book-pronta-entrega', siteID, token });
   }
