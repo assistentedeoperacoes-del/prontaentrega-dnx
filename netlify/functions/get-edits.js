@@ -1,8 +1,17 @@
 import { getStore } from '@netlify/blobs';
 
+function getBookStore() {
+  const siteID = process.env.NETLIFY_BLOBS_SITE_ID;
+  const token = process.env.NETLIFY_BLOBS_TOKEN;
+  if (siteID && token) {
+    return getStore({ name: 'book-pronta-entrega', siteID, token });
+  }
+  return getStore('book-pronta-entrega');
+}
+
 export const handler = async () => {
   try {
-    const store = getStore('book-pronta-entrega');
+    const store = getBookStore();
     const raw = await store.get('state', { type: 'json' });
     return {
       statusCode: 200,
